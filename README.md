@@ -10,11 +10,11 @@ Ce brief sera ton brief **Chef d'oeuvre de fin de formation**. Il rassemble tout
 
 # le brief
 
-![](./images/mockup_carte_recto_verso.jpg)
+![](./assets/images/mockup_carte_recto_verso.jpg)
 La _Boucherie Benoît Paux_ vient d'ouvrir récemment son commerce. Expert en la matière et faisant la meilleure viande des Hauts-De-France (placement de produit 😅), son activité c'est bien développé.  
 🧑‍🍳 Un traiteur a rejoint l'équipe et comme tous les ans, il va proposer sa carte pendant les fêtes. Aujourd'hui les commandes se font par téléphone, directement à la boucherie et tout est noté sur un cahier (et oui le papier n'est pas mort).  
 Vous l'aurez compris, en tant que Dev on ne peut pas rester sans rien faire. Grâce à nos supers pouvoirs, on se doit de mettre en place une solution pour automatiser tout ça.  
-![](./images/giphy.gif)  
+![](./assets/images/giphy.gif)  
 L'idée est simple, mettre en place une solution de prise de commande pour les clients.  
 Les commandes seront visibles via une interface admin pour le traiteur avec suivi.  
 L'idée également est de pouvoir à la création de produit (pour la boucherie) indiquer le détail du produit.  
@@ -32,7 +32,7 @@ La recette se sera pas visible pour l'utilisateur mais uniquement pour le traite
 # les étapes
 
 - concevoir un CDC
-- concevoir une maquette [logo](./images/logo@1000x.png), [la carte 2021](./images/menu_2021.jpg)
+- concevoir une maquette [logo](./assets/images/logo@1000x.png), [la carte 2021](./assets/images/menu_2021.jpg)
 - concevoir le diagramme de classe
 - intégrer la maquette en mode Mobile First (Framework CSS)
 - concevoir la BDD
@@ -41,7 +41,7 @@ La recette se sera pas visible pour l'utilisateur mais uniquement pour le traite
 - développer le dashboard admin
 - mettre en ligne la solution  
   **Le travail se fera en équipe de 3 ou 4 maximum avec une méthodologie agile.**  
-  ![](./images/logo@1000x.png)
+  ![](./assets/images/logo@1000x.png)
 
 # Suggestion de calendrier par Christophe Romain
 
