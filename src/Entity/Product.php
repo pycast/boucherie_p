@@ -19,7 +19,7 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $description;
 
     #[ORM\Column(type: 'integer')]
@@ -31,6 +31,9 @@ class Product
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $recipe_associated;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $illustration;
 
     public function getId(): ?int
     {
@@ -105,6 +108,18 @@ class Product
     public function setRecipeAssociated(?string $recipe_associated): self
     {
         $this->recipe_associated = $recipe_associated;
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(string $illustration): self
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }
