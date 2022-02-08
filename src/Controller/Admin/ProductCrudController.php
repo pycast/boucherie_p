@@ -32,7 +32,7 @@ class ProductCrudController extends AbstractCrudController
                 ->setRequired(false),
             TextareaField::new('description'),
             MoneyField::new('price')->setCurrency('EUR'),
-            AssociationField::new('category_name')
+            AssociationField::new('category')
         ];
         
     }

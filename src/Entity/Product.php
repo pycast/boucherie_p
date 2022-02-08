@@ -22,18 +22,29 @@ class Product
     #[ORM\Column(type: 'text')]
     private $description;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $illustration;
+
+    #[ORM\Column(type: 'float')]
     private $price;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $category_name;
+    private $category;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $recipe_associated;
+    private $recipe;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $illustration;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $subtitle;
+
+    #[ORM\Column(type: 'boolean')]
+    private $visible;
+
+    #[ORM\Column(type: 'boolean')]
+    private $order_online_open;
+
+    
 
     public function getId(): ?int
     {
@@ -88,26 +99,25 @@ class Product
         return $this;
     }
 
-    public function getCategoryName(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->category_name;
+        return $this->category;
     }
-
-    public function setCategoryName(?Category $category_name): self
+    public function setCategory(?Category $category): self
     {
-        $this->category_name = $category_name;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getRecipeAssociated(): ?string
+    public function getRecipe(): ?string
     {
-        return $this->recipe_associated;
+        return $this->recipe;
     }
 
-    public function setRecipeAssociated(?string $recipe_associated): self
+    public function setRecipe(?string $recipe): self
     {
-        $this->recipe_associated = $recipe_associated;
+        $this->recipe = $recipe;
 
         return $this;
     }
@@ -120,6 +130,42 @@ class Product
     public function setIllustration(string $illustration): self
     {
         $this->illustration = $illustration;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    public function getVisible(): ?bool
+    {
+        return $this->visible;
+    }
+
+    public function setVisible(bool $visible): self
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    public function getOrderOnlineOpen(): ?bool
+    {
+        return $this->order_online_open;
+    }
+
+    public function setOrderOnlineOpen(bool $order_online_open): self
+    {
+        $this->order_online_open = $order_online_open;
 
         return $this;
     }
