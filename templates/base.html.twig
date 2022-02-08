@@ -14,44 +14,56 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-        {% block body %}
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand logo" href="#">
-    <img src="{{ asset('build/images/logo@1000x.png') }}" alt="">
-    
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Nos produits
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Boucherie</a></li>
-            <li><a class="dropdown-item" href="#">Traiteur</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Mon profil</a>
-        </li>
+{% block body %}
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="#">
+      <img src="{{ asset('build/images/logo@1000x.png') }}" alt="">
+      
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Nos produits
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Boucherie</a></li>
+              <li><a class="dropdown-item" href="#">Traiteur</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Mon profil</a>
+          </li>
 
-      </ul>
+        </ul>
+        <div class="navbar-item-custom" >
+          {% if app.user %}
+              <a href="{{path('account')}}"> Mon Compte <small>( {{ app.user.firstname }} )</small></a> |
+              <a href="{{path('app_logout')}}"> Deconnection </a>
+          {% else %}
+              <a href="{{path('app_login')}}"> Connexion </a> | <a href="{{path('register')}}"> Inscription </a>
+          {% endif %}
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
-            {% block content %}
+  </nav>
 
-            {% endblock %}
-        <!-- Footer-->
-        <footer class="footer-custom">
-            <p>Team Gradient &copy; <br>
-             Boucherie Paux 2022</p>
-        </footer>
-        {% endblock %}
+  <!-- container -->
+  <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %} ">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- Footer-->
+  <footer class="footer-custom">
+      <p>Team Gradient &copy; <br>
+        Boucherie Paux 2022</p>
+  </footer>
+{% endblock %}
