@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits - Boucherie Paux{% endblock %}
+
+{% block content %}
+    <h1>Nos produits</h1>
+        <div class="row">
+    {% for product in products %}
+        <div class="col-md-4">
+            <div class="product-item">
+                <div class="box-img">
+                    <img src="/uploads/{{product.illustration}}" alt="{{product.name}}" class="img-fluid custom-img">
+                </div>
+                <h5>{{product.name}}</h5>
+                <span>{{product.subtitle}}</span>
+                <span>{{product.price}}</span>
+               
+             </div>
+        </div>
+        
+    {% endfor %}
+  </div>
+
+{% endblock %}
