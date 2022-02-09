@@ -4,21 +4,26 @@
 
 {% block content %}
     <h1>Nos produits</h1>
-        <div class="row">
-    {% for product in products %}
-        <div class="col-md-4">
-            <div class="product-item">
-                <div class="box-img">
-                    <img src="/uploads/{{product.illustration}}" alt="{{product.name}}" class="img-fluid custom-img">
+    <div class="container-product">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for product in products %}
+            
+                <div class="col">
+                    <div class="card bg-dark">
+                        <img src="/uploads/{{product.illustration}}" class="card-img-top img-custom" alt="{{product.name}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.name}}</h5>
+                            <h6>{{product.subtitle}}</h6>
+                            <p class="card-text">{{product.description}}</p>
+                            <p class="card-text"><small class="text-muted">{{(product.price/100)|number_format(2,',','.')}}€</small></p>  
+                        </div>
+                    </div>
                 </div>
-                <h5>{{product.name}}</h5>
-                <span>{{product.subtitle}}</span>
-                <span>{{product.price}}</span>
-               
-             </div>
+
+            {% endfor %}
         </div>
-        
-    {% endfor %}
-  </div>
+    </div>
+
+ 
 
 {% endblock %}
