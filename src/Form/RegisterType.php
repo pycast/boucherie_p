@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -19,7 +19,7 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('firstname', TypeTextType::class, [
+        ->add('firstname', TextType::class, [
             'label' => 'Votre prénom',
             'constraints' => new Length([
                 'min' => 2,
@@ -29,7 +29,7 @@ class RegisterType extends AbstractType
                 'placeholder' => 'Votre prénom'
                 ]
         ])
-        ->add('lastname', TypeTextType::class, [
+        ->add('lastname', TextType::class, [
             'label' => 'Votre nom',
             'constraints' => new Length([
                 'min' => 2,
@@ -74,7 +74,10 @@ class RegisterType extends AbstractType
             ]
         ])
         ->add('submit', SubmitType::class, [
-            'label' => "S'inscrire"
+            'label' => "S'inscrire",
+            'attr' => [
+                'class' => 'btn-block btn-info'
+            ]
         ])
     ;
 }

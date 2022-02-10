@@ -55,6 +55,12 @@
     </div>
   </nav>
 
+    {% if notification %}
+        <div class="alert alert-info">{{ notification }}</div>
+        <hr>
+    {% else %}
+          <div></div>
+    {% endif %}
   <!-- container -->
   <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %} ">
     {% block content %}

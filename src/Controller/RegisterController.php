@@ -22,6 +22,7 @@ class RegisterController extends AbstractController
     #[Route('/inscription', name: 'register')]
     public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
+        $notification = "";
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
@@ -31,19 +32,27 @@ class RegisterController extends AbstractController
 
             $user=$form->getData();
 
-            $password = $passwordHasher->hashPassword(
-                $user,
-                $user->getPassword()
-            );
-            $user->setPassword($password);
+            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+        
+            if (!$search_email) {
+                $password = $passwordHasher->hashPassword(
+                    $user,
+                    $user->getPassword()
+                );
+                $user->setPassword($password);
 
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+                $notification = "Votre inscription s'est correctement déroulé. Vous pouvez dès à présent vous connecter à votre compte";
+            } else {
+                $notification = "L'email que vous avez renseigné existe déjà.";
+            }
         }
 
 
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'notification' => $notification
         ]);
     }
 }

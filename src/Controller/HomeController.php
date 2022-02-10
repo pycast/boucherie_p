@@ -13,8 +13,10 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        $notification = "";
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'notification' => $notification
         ]);
     }
 }
