@@ -6,6 +6,8 @@
 
 @import "_navbar.scss";
 
+@import "_font.scss";
+
 body {
   background-color: $bg_color;
   color: white;
@@ -13,9 +15,7 @@ body {
 }
 
 .backgroundForm {
-  background-color: $bg_color2;
   padding: 50px;
-  border-radius: 15%;
 }
 .account-item {
   background-color: #f1f2f6;
@@ -37,4 +37,28 @@ body {
 
 .box-img {
   width: 250px;
+}
+
+/* Products */
+.container-product {
+  margin-bottom: 200px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.card-custom {
+  border: none;
+}
+.card-custom:hover {
+  box-shadow: 0px 0px 10px 2px $secondary_color;
+  transform: scale(1.02);
+  transition: ease-in-out 125ms;
 }

@@ -3,22 +3,53 @@
 {% block title %}Nos produits - Boucherie Paux{% endblock %}
 
 {% block content %}
-    <h1>Nos produits</h1>
-        <div class="row">
-    {% for product in products %}
-        <div class="col-md-4">
-            <div class="product-item">
-                <div class="box-img">
-                    <img src="/uploads/{{product.illustration}}" alt="{{product.name}}" class="img-fluid custom-img">
-                </div>
-                <h5>{{product.name}}</h5>
-                <span>{{product.subtitle}}</span>
-                <span>{{product.price}}</span>
-               
-             </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h1 class='title-custom'>Filtrer</h1>
+            {{form(form)}}
         </div>
-        
-    {% endfor %}
-  </div>
+        <div class="col-md-9">
+            <h1 class="title-custom">Nos produits</h1>
+            <div class="container-product">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for product in products %}
+                        <div class="col">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modal{{product.id}}">
+                                <div class="card bg-dark card-custom h-100">
+                                    <img src="/uploads/{{product.illustration}}" class="card-img-top img-custom" alt="{{product.name}}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{product.name}}</h5>
+                                        <h6>{{product.subtitle}}</h6>
+                                        <p class="card-text"><small class="text-muted">{{(product.price/100)|number_format(2,',','.')}}€</small></p> 
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{product.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content text-dark">
+                                    <div class="m-3">
+                                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h4 class="title-custom text-center" id="exampleModalLabel">{{product.name}}</h4>
+                                        <small><p class="text-custom text-center text-muted" id="exampleModalLabel">{{product.subtitle}}</p></small>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="/uploads/{{product.illustration}}" class="card-img-top img-custom mb-3" alt="{{product.name}}">
+                                        <p class="text-custom text-justify m-3">{{product.description}}</p>
+                                        <div class="row m-3">
+                                            <p class="text-custom text-center col"><small class="text-muted">{{(product.price/100)|number_format(2,',','.')}}€</small></p> 
+                                            <button type="button" class="col btn btn-primary">Ajouter au panier</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
