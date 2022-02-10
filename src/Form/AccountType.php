@@ -35,7 +35,7 @@ class AccountType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => "Valider",
                 'attr' => [
-                    'class' => 'btn btn-block btn-info'
+                    'class' => 'btn btn-block btn-warning'
                 ]
             ])
         ;
