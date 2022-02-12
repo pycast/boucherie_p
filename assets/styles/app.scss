@@ -62,3 +62,22 @@ a:hover {
   transform: scale(1.02);
   transition: ease-in-out 125ms;
 }
+
+.custom-radient{
+  background: linear-gradient(to top, #333 5%, #cf9d3d 50%, #333 95%);
+}
+
+.table-custom{
+  background-color: #f8f9fa80;
+  margin: 2px;
+  border-radius: 15px;
+}
+
+.custom-button{
+  background-color: white;
+  border: solid black 2px;
+  border-radius: 5px;
+  height: 3rem;
+  width: 3rem;
+  padding: 10px;
+}
