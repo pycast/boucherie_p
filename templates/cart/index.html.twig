@@ -8,29 +8,51 @@
         Retrouver l'ensemble des produits que vous avez ajouté à votre panier.
 
         {% if cart|length > 0 %}
-            <table class="table m-3 ">
+            <table class="table">
             <tbody class="d-grid gap-3">
             {% set total = null %}
             {% for product in cart %}
                 <tr class="p-2 table-custom row">
-                    <td class="col-5">
+                    <td class="col-6">
                         <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px"><br>
                         {{ product.product.name }} <br>
                         <small>{{ product.product.subtitle }}</small>
                     </td>
-                    <td class="col-7">
-                        <a href="{{ path('decrease_to_cart', {'id' : product.product.id }) }}">
-                            <img src="{{ asset('build/images/minus.png') }}"class="custom-button" height="20px" alt="Retirer du panier">
-                        </a>
-                        x {{ product.quantity }}
-                        <a href="{{ path('add_to_cart', {'id' : product.product.id }) }}">
-                            <img src="{{ asset('build/images/plus.png') }}" class="custom-button" height="20px" alt="Ajouter au panier">
-                        </a> <br>
-                        {{ (product.product.price / 100) |number_format(2, ',', '.') }} €
-                        {{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €<br>
-                        <a href="{{ path('delete_to_cart', {'id' : product.product.id }) }}">
-                            <img src="{{ asset('build/images/trash.png') }}" class="mx-auto custom-button" alt="Suprimer mon panier">
-                        </a>
+                    <td class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="{{ path('decrease_to_cart', {'id' : product.product.id }) }}">
+                                    <img src="{{ asset('build/images/minus.png') }}"class="custom-button" height="20px" alt="Retirer du panier">
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                x {{ product.quantity }}
+                            </div>
+                            <div class="col-3">
+                                <a href="{{ path('add_to_cart', {'id' : product.product.id }) }}">
+                                    <img src="{{ asset('build/images/plus.png') }}" class="custom-button" height="20px" alt="Ajouter au panier">
+                                </a> <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <strong>Prix unitaire :</strong> <br>
+                                {{ (product.product.price / 100) |number_format(2, ',', '.') }} €
+                            </div>
+                            <div class="col-6">
+                                <strong>Total :</strong> <br>
+                                {{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €<br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ path('delete_to_cart', {'id' : product.product.id }) }}">
+                                    <img src="{{ asset('build/images/trash.png') }}" class="mx-auto custom-button" alt="Suprimer mon panier">
+                                </a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 {% set total = total + (product.product.price * product.quantity) %}
