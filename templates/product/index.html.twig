@@ -6,13 +6,14 @@
 <div class="row">
     <div class="col-md-3">
         <h1 class='title-custom'>Filtrer</h1>
-        {{form(form)}}
+       {{form(form)}}
     </div>
     <div class="col-md-9">
-        <h1 class="title-custom">Nos produits</h1>
+        <h1 class="title-custom">Nos produits {{title}}</h1>
         <div class="container-product">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for product in products %}
+                    {% if product.visible == true %}
                 <div class="col">
                     <a href="" data-bs-toggle="modal" data-bs-target="#modal{{product.id}}">
                         <div class="card bg-dark card-custom h-100">
@@ -45,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

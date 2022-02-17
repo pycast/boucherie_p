@@ -1,30 +1,36 @@
 @import "_var.scss";
 
-:root{
-    --sidebar-bg: #cf9d3d;
-    --text-color: white;
-    --table-cell-color: white;
-    --table-thead-color: white;
-    --pagination-color: white;
+:root {
+  --sidebar-bg: #cf9d3d;
+  --text-color: white;
+  --table-cell-color: white;
+  --table-thead-color: white;
+  --pagination-color: white;
 }
 
-.content-top{
-    background-color: #cf9d3d;
+.content-top {
+  background-color: #cf9d3d;
 }
 
-body, .content-header {
-    background-color: black;
+body,
+.content-header {
+  background-color: black;
 }
 
-h1, h2, h3, h4, h5, h6{
-    color: white;
-    font-family: "Lobster", cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+  font-family: "Lobster", cursive;
 }
 
-.btn-primary{
-    background-color: #cf9d3d;
+.btn-primary {
+  background-color: #cf9d3d;
 }
 
 .page-item.active .page-link {
-    background-color: #cf9d3d;
+  background-color: #cf9d3d;
 }
