@@ -23,6 +23,9 @@ class ProductController extends AbstractController
     #[Route('/nos-produits', name: 'products')]
     public function index( Request $request): Response
     {
+
+        $title='';
+
         $products= $this->entityManager->getRepository(Product::class)->findAll();
        
        /*filtre*/
@@ -37,11 +40,10 @@ class ProductController extends AbstractController
             
         }
 
-        dd($products);
-
         return $this->render('product/index.html.twig', [
             'products'=>$products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'title'=> $title
         ]);
     }
 
@@ -51,39 +53,20 @@ class ProductController extends AbstractController
     #[Route('/nos-produits/boucherie', name: 'products_butchery')]
     public function butcheryProducts( Request $request ): Response
     {
+        $title='boucherie';
 
         $categoryButchery= $this->entityManager->getRepository(Category::class)->findByType('1');
     
         $ids=[];
-        $products=[];
         
         foreach($categoryButchery as $kategory){
             $ids[]=$kategory->getId();  
             
         }
 
-        foreach ($ids as $id){
-            $products[]=$this->entityManager->getRepository(Product::class)->findByCategory($id);
-            /*$product correspond à un tableau comprenant les objets dont l'id = $id*/  
-           
-        }
+        $products=$this->entityManager->getRepository(Product::class)->findByCategory($ids);
 
-        foreach($products as $product){
-            dd($product);
 
-        }
-
-        
-      
-        
-        
-        
-        
-
-        
-
-       
-       
 
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
@@ -98,7 +81,48 @@ class ProductController extends AbstractController
 
         return $this->render('product/index.html.twig', [
             'products'=>$products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'title'=> $title
+        ]);
+    }
+
+
+    /**
+     * Return caterer products
+     */
+    #[Route('/nos-produits/traiteur', name: 'products_caterer')]
+    public function catererProducts( Request $request ): Response
+    {
+        $title='traiteur';
+
+        $categoryCaterer= $this->entityManager->getRepository(Category::class)->findByType('0');
+    
+        $ids=[];
+        
+        foreach($categoryCaterer as $kategory){
+            $ids[]=$kategory->getId();  
+            
+        }
+
+        $products=$this->entityManager->getRepository(Product::class)->findByCategory($ids);
+
+    
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $products=$this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            
+            
+        }
+
+        return $this->render('product/index.html.twig', [
+            'products'=>$products,
+            'form' => $form->createView(),
+            'title'=> $title
         ]);
     }
 }
