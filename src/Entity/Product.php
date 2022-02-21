@@ -44,6 +44,9 @@ class Product
     #[ORM\Column(type: 'boolean')]
     private $order_online_open;
 
+    #[ORM\OneToOne(mappedBy: 'product', targetEntity: Recipe::class, cascade: ['persist', 'remove'])]
+    private $recipe_associated;
+
     
 
     public function getId(): ?int
@@ -166,6 +169,23 @@ class Product
     public function setOrderOnlineOpen(bool $order_online_open): self
     {
         $this->order_online_open = $order_online_open;
+
+        return $this;
+    }
+
+    public function getRecipeAssociated(): ?Recipe
+    {
+        return $this->recipe_associated;
+    }
+
+    public function setRecipeAssociated(Recipe $recipe_associated): self
+    {
+        // set the owning side of the relation if necessary
+        if ($recipe_associated->getProduct() !== $this) {
+            $recipe_associated->setProduct($this);
+        }
+
+        $this->recipe_associated = $recipe_associated;
 
         return $this;
     }
