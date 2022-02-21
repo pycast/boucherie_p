@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations - la boucherie Paux{% endblock %}
+
+{% block content %}
+    
+
+    <h1>Modifier mes informations</h1>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
+    <hr>
+
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">{{ form_row(form.phone) }}</div>
+            <div class="col-md-12">{{ form_row(form.email) }}</div>
+        </div>
+    {{ form_end(form) }}
+
+    <hr>
+    <a href="{{ path('account') }}">Retourner à mon compte</a>
+{% endblock %}

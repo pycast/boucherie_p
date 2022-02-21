@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier - La Boutique Française{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(to top, #000 5%, #cf9d3d 50%, #000 95%);">
+        <h1 class="title-custom">Mon panier</h1>
+        Retrouver l'ensemble des produits que vous avez ajouté à votre panier.
+
+        {% if cart|length > 0 %}
+            <table class="table m-3 ">
+            <tbody class="d-grid gap-3">
+            {% set total = null %}
+            {% for product in cart %}
+                <tr class="p-2 table-custom row">
+                    <td class="col-5">
+                        <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px"><br>
+                        {{ product.product.name }} <br>
+                        <small>{{ product.product.subtitle }}</small>
+                    </td>
+                    <td class="col-7">
+                        <a href="{{ path('decrease_to_cart', {'id' : product.product.id }) }}">
+                            <img src="{{ asset('build/images/minus.png') }}"class="custom-button" height="20px" alt="Retirer du panier">
+                        </a>
+                        x {{ product.quantity }}
+                        <a href="{{ path('add_to_cart', {'id' : product.product.id }) }}">
+                            <img src="{{ asset('build/images/plus.png') }}" class="custom-button" height="20px" alt="Ajouter au panier">
+                        </a> <br>
+                        {{ (product.product.price / 100) |number_format(2, ',', '.') }} €
+                        {{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €<br>
+                        <a href="{{ path('delete_to_cart', {'id' : product.product.id }) }}">
+                            <img src="{{ asset('build/images/trash.png') }}" class="mx-auto custom-button" alt="Suprimer mon panier">
+                        </a>
+                    </td>
+                </tr>
+                {% set total = total + (product.product.price * product.quantity) %}
+                {% endfor %}
+            </tbody>
+            </table>
+            <div class="text-right m-5">
+                <b>Total de mon panier :</b> {{ (total / 100) |number_format(2, ',', '.') }} € <br>
+                <a href="" class="btn btn-success btn-block">Passer commande</a>
+            </div>
+        {% else %}
+        <hr>
+        Votre panier est vide.
+        {% endif %}
+    </div>
+{% endblock %}

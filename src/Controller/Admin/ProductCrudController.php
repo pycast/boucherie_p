@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -25,6 +26,7 @@ class ProductCrudController extends AbstractCrudController
         return[
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name'),
+            TextField::new('subtitle'),
             ImageField::new('illustration')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')
@@ -32,7 +34,10 @@ class ProductCrudController extends AbstractCrudController
                 ->setRequired(false),
             TextareaField::new('description'),
             MoneyField::new('price')->setCurrency('EUR'),
-            AssociationField::new('category_name')
+            AssociationField::new('category'),
+            BooleanField::new('visible'),
+            BooleanField::new('order_online_open')
+
         ];
         
     }

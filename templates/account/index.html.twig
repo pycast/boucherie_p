@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - la boucherie Paux{% endblock %}
+
+{% block content %}
+    <h1>Mon compte</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <small><a href="/admin"> - Vous êtes un administrateur, accéder au backoffice ?</a></small><br>
+    {% endif %}
+    Bienvenue {{ app.user.firstname }} dans votre compte.<br>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
+    <hr>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <a href="{{ path('account_update', {'id' : app.user.id } ) }}">Modifier mes infos</a><br>
+            </div>
+        </div> 
+
+        <div class="col-md-4">
+            <div class="account-item btn-danger text-center">
+                <a href="{{ path('admin') }}">Administration</a><br>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <a href="">Suivre mes commandes</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+{% endblock %}
