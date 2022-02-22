@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Ingredient;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -54,6 +55,7 @@ class AdminDashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-tag', Category ::class);
         yield MenuItem::linkToCrud('Produits', 'fas fa-store', Product ::class);
+        yield MenuItem::linkToCrud('commandes', 'fas fa-box', Order ::class);
     }
 
     public function configureAssets(): Assets
