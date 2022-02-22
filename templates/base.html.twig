@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,12 +49,16 @@
             <li class="nav-item">
               <a class="nav-link active" href="{{path('register')}}"> Inscription </a>
             </li>
+            <li class="nav-item">
+          <a class="nav-link active" href="{{path('histoire')}}">Notre histoire</a>
+        </li>
           {% endif %}
         </ul>
         <a href="{{ path('cart') }}">
           <img src="{{ asset('build/images/shopping-cart.png') }}" height="40px" alt="Mon-panier">
         </a>
       </div>
+
     </div>
   </nav>
 

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+
+  
+</br>
+
+
+        
+            <h1 class="title-custom text-center">Notre Histoire</h1>
+            </br>
+          
+       
+        <div class='row histoire-container'>
+                {% for histoire in histoires %}
+                    <div class="col-md-12">
+                        <div class="histoire-item text-center">
+                            </br>
+                            <a href="{{ path('histoire')}}"><img src='/uploads/{{histoire.illustration}}' alt="{{histoire.name}}" class="img-fluid">
+                            </br>
+                            </br>
+                            <h5 class='title-custom'>{{histoire.name}}</h5>
+                            </br>
+                            <p class='text-custom'>{{histoire.description}}</p>
+                            </br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+
+
+{% endblock %}
