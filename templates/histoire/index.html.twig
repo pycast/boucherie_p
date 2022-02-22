@@ -3,48 +3,34 @@
 
 {% block content %}
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-                  <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
-                </div>
-            </div>
-    </div>
-    <div class="carousel-item">
-                  <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
-                    
-                </div>
-            </div>
-    </div>
-    <div class="carousel-item">
-                  <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
-                </div>
-            </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+
+  
 </br>
-<h1 class="title-custom">Notre Histoire</h1>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id erat fringilla, semper metus nec, hendrerit magna. Vestibulum imperdiet, enim vitae hendrerit vestibulum, arcu arcu pretium nunc, eu cursus ligula nisi eu nisl. Nullam posuere tristique enim eget pharetra. Quisque vitae pharetra quam, eu hendrerit enim. Ut euismod, velit id placerat condimentum, ex ipsum laoreet quam, non porttitor ex purus eget massa. Morbi dapibus ante aliquet ligula tincidunt, vel lobortis purus suscipit. Integer sed malesuada enim, ut pulvinar dui. Morbi euismod lacus non condimentum elementum. Fusce faucibus sapien nec enim scelerisque, ut eleifend tellus interdum.
+
+
+        
+            <h1 class="title-custom text-center">Notre Histoire</h1>
+            </br>
+          
+       
+        <div class='row histoire-container'>
+                {% for histoire in histoires %}
+                    <div class="col-md-12">
+                        <div class="histoire-item text-center">
+                            </br>
+                            <a href="{{ path('histoire')}}"><img src='/uploads/{{histoire.illustration}}' alt="{{histoire.name}}" class="img-fluid">
+                            </br>
+                            </br>
+                            <h5 class='title-custom'>{{histoire.name}}</h5>
+                            </br>
+                            <p class='text-custom'>{{histoire.description}}</p>
+                            </br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
 
 
 
