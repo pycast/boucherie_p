@@ -22,7 +22,7 @@ class OrderController extends AbstractController
     }
 
     #[Route('/commande', name: 'order')]
-    public function index(Cart $cart, Request $request): Response
+    public function index(Cart $cart): Response
     {
         $form = $this->createForm(DeliveryType::class);
         
@@ -44,8 +44,8 @@ class OrderController extends AbstractController
             $date = new \DateTime();
             $order = new Order;
 
-            // $reference = $date->format('dmY').'-'.uniqid();
-            // $order->setReference($reference);
+            $reference = $date->format('dmY').'-'.uniqid();
+            $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setPayment(0);
@@ -65,15 +65,13 @@ class OrderController extends AbstractController
         }
 
         $this->entityManager->flush();
-
-
-            {{ dump($orderDetails); }}
         }
 
         return $this->render('order/add.html.twig', [
             'form' => $form->createView(),
             'cart' => $cart->getFull(),
-            // 'reference' => $reference
+            'reference' => $reference,
+            'delivery_date' => $order->getDeliveryDate()
         ]);
     }
 }

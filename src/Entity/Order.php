@@ -35,6 +35,12 @@ class Order
     #[ORM\OneToMany(mappedBy: 'myOrder', targetEntity: OrderDetails::class)]
     private $orderDetails;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $reference;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $stripesessionid;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -131,6 +137,30 @@ class Order
                 $orderDetail->setMyOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripesessionid(): ?string
+    {
+        return $this->stripesessionid;
+    }
+
+    public function setStripesessionid(?string $stripesessionid): self
+    {
+        $this->stripesessionid = $stripesessionid;
 
         return $this;
     }

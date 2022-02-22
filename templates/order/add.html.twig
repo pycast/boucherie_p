@@ -9,6 +9,7 @@
 {% block content %}
     <h2>Mon récapitulatif</h2>
     <p>Vérifiez vos informations avant de payer votre commandes.</p>
+    <p>Votre commande sera disponible à partir du {{ delivery_date|date("m/d/Y") }}</p>
     <hr>
     <div class="row">
         <div class="col-md-6">
@@ -21,7 +22,6 @@
             <div class="order-summary">
             {% set total = null %}
                 {% for key,product in cart %}
-                {{ dump(product) }}
                 <div class="row {% if key > 0 %}mt-2{% endif %}">
                     <div class="col-3">
                         <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px">
@@ -44,8 +44,8 @@
             
             <hr>
             <strong>Total : </strong> {{ (total / 100) |number_format(2, ',', '.') }} € <br>
-            <a href="" class="btn btn-success btn-block mt-3">Payer {{ (total / 100)|number_format(2, ',', '.') }} €</a>
-            {# <a href="{{ path('stripe_create_session',{'reference':reference}) }}" class="btn btn-success btn-block mt-3">Payer | {{ (total / 100 + carrier.price / 100)|number_format(2, ',', '.') }} €</a> #}
+            {# <a href="" class="btn btn-success btn-block mt-3">Payer {{ (total / 100)|number_format(2, ',', '.') }} €</a> #}
+            <a href="{{ path('stripe_create_session',{'reference':reference}) }}" class="btn btn-success btn-block mt-3">Payer | {{ (total / 100)|number_format(2, ',', '.') }} €</a>
         </div>
     </div>
 
