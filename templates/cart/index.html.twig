@@ -61,7 +61,7 @@
             </table>
             <div class="text-right m-5">
                 <b>Total de mon panier :</b> {{ (total / 100) |number_format(2, ',', '.') }} € <br>
-                <a href="" class="btn btn-success btn-block">Passer commande</a>
+                <a href="{{ path('order') }}" class="btn btn-success btn-block">Passer commande</a>
             </div>
         {% else %}
         <hr>

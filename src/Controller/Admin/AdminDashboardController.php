@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\Histoire;
 use App\Entity\Ingredient;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Quantity;
 use App\Entity\Recipe;
@@ -60,6 +62,8 @@ class AdminDashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('2.Ingrédients', 'fas fa-smile', Ingredient ::class);
         yield MenuItem::linkToCrud('3.Quantités', 'fas fa-weight', Quantity::class);
         
+        yield MenuItem::linkToCrud('commandes', 'fas fa-box', Order ::class);
+        yield MenuItem::linkToCrud('Histoire', 'fas fa-newspaper', Histoire ::class);
     }
 
     public function configureAssets(): Assets
