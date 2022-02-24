@@ -27,6 +27,11 @@ class Recipe
         $this->quantities = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getProduct();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

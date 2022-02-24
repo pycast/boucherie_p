@@ -24,6 +24,7 @@ class Quantity
     #[ORM\Column(type: 'float')]
     private $quantity;
 
+   
     public function getId(): ?int
     {
         return $this->id;

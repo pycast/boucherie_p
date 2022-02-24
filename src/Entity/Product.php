@@ -47,7 +47,10 @@ class Product
     #[ORM\OneToOne(mappedBy: 'product', targetEntity: Recipe::class, cascade: ['persist', 'remove'])]
     private $recipe_associated;
 
-    
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {
