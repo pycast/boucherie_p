@@ -29,7 +29,7 @@ class Order
     #[ORM\Column(type: 'integer')]
     private $state;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'string')]
     private $delivery_date;
 
     #[ORM\OneToMany(mappedBy: 'myOrder', targetEntity: OrderDetails::class)]
@@ -108,12 +108,12 @@ class Order
         return $this;
     }
 
-    public function getDeliveryDate(): ?\DateTimeInterface
+    public function getDeliveryDate(): ?string
     {
         return $this->delivery_date;
     }
 
-    public function setDeliveryDate(\DateTimeInterface $delivery_date): self
+    public function setDeliveryDate( $delivery_date): self
     {
         $this->delivery_date = $delivery_date;
 

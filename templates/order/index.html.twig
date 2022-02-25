@@ -2,6 +2,41 @@
 
 {% block title %}Ma comande - Boucherie Paux{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    {{ encore_entry_script_tags('app') }}
+
+    <script>
+        $(function () {
+            function disableDays(date) {
+                var day = date.getDay();
+                return [(day != 0 & day != 6 ), ""];
+            }
+            $(".datepicker").datepicker({
+                minDate: +3,
+                maxDate: "+1M +10D", dateFormat: 'yy-mm-dd',
+                beforeShowDay: disableDays,
+                closeText: 'Fermer',
+                prevText: 'Précédent',
+                nextText: 'Suivant',
+                currentText: 'Aujourd\'hui',
+                monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+                dayNamesShort: ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.', 'Dim.'],
+                dayNamesMin: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
+                weekHeader: 'Sem.',
+            });
+        });   
+    </script>
+{% endblock %}
+
 {% block content %}
     <h2>Ma commande</h2>
     <p>choisissez la date de retrait, avant de finaliser votre commande.</p>
