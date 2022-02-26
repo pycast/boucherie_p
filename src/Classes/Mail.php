@@ -8,8 +8,8 @@ use Mailjet\Resources;
 class Mail
 {
     // remplacer ici par les clefs api Mailjet de la boucherie
-    private $api_key = '9d8a3462a17da709f9c4e4accbbbf626';
-    private $api_key_secret = 'df9bbfae265028b82d4513329ab4cb40';
+    private $api_key = '8a20f4046f4569060a23b6cd78a16a07';
+    private $api_key_secret = 'de6b4a240e228827c7d5d8c9f7bc56a3';
 
     public function send($to_mail, $to_name, $subject, $content)
     {
@@ -19,7 +19,7 @@ class Mail
                 [
                     'From' => [
                         // Modifier ici avec l'adresse mail de la boucherie
-                        'Email' => "py.castelleta.pro@gmail.com",
+                        'Email' => "projet.team.gradient@gmail.com",
                         'Name' => "Boucherie Paux"
                     ],
                     'To' => [
@@ -28,7 +28,7 @@ class Mail
                             'Name' => $to_name
                         ]
                     ],
-                    'TemplateID' => 3682155,
+                    'TemplateID' => 3682646,
                     'TemplateLanguage' => true,
                     'Subject' => $subject,
                     'Variables' => [

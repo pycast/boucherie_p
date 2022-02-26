@@ -44,7 +44,7 @@ class ContactController extends AbstractController
 
             $content = $contactName . "<br>" . $contactLastname . "<br>" . $contactMail . "<br>" . $contactMessage;
 
-            $mail->send('py.castelleta.pro@gmail.com', 'Boucherie Paux', "Un nouveau message de contact via votre site d'e-Commerce", $content);
+            $mail->send('projet.team.gradient@gmail.com', 'Boucherie Paux', "Un nouveau message de contact via votre site d'e-Commerce", $content);
 
 
             $alert = "Votre message a bien été envoyé " . $contactName . ", nous allons vous répondre dans les meilleurs délais.";
