@@ -27,8 +27,8 @@ class ProductController extends AbstractController
         $title='';
 
         $products= $this->entityManager->getRepository(Product::class)->findAll();
-       
-       /*filtre*/
+        
+        /*filtre*/
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
 

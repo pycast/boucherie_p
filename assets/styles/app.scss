@@ -88,5 +88,29 @@ a:hover {
   height: 3rem;
   width: 3rem;
   padding: 10px;
+}
 
+.custom-cart{
+  background-color: #000000;
+  border: solid #ffffff 2px;
+  border-radius: 25px;
+  height: 4rem;
+  width: 5rem;
+  position: relative;
+  padding: 8px 16px;
+}
+.cart{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  &-img{
+    z-index: 1;
+  }
+  &-text{
+    z-index: 2;
+    font-size: x-large;
+    color: tomato;
+    font-weight: bolder;
+    padding: 5px;
+  }
 }
