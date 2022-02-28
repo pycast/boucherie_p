@@ -83,3 +83,9 @@ développement site e-commerce
 Etude des solutions de paiement en ligne
 Intégration du paiement
 recette avec le client
+
+# ⚠️ Ce qu'il faudra modifier au moment de la mise en prod ⚠️
+
+Les fichiers :
+
+-> src/Classes/Mail.php : Définir l'adresse mail + clefs api MailJet du compte que l'on creera pour l'artisan

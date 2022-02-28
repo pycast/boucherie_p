@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Boucherie Paux{% endblock %}
+
+{% block content %}
+<h2>Contactez-nous</h2>
+<br>
+
+{% if alert != '' %}
+
+<div class="alert alert-success" role="alert"> 
+    {{alert}}
+</div>
+
+{% endif %}
+<p>Vous avez une question sur nos produits? Vous avez un grand événement à venir et voulez faire appel à nos services? Vous êtes au bon endroit.</p>
+
+{{form_start(form)}}
+
+<div class="row">
+    <div class="col-md-6">{{form_row(form.lastname)}}</div>
+    <div class="col-md-6">{{form_row(form.firstname)}}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">{{form_row(form.email)}}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">{{form_row(form.subject)}}</div>
+</div>
+{{form_end(form)}}
+
+{% endblock %}
