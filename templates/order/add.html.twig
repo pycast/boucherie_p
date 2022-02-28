@@ -9,13 +9,10 @@
 {% block content %}
     <h2>Mon récapitulatif</h2>
     <p>Vérifiez vos informations avant de payer votre commandes.</p>
-    <p>Votre commande sera disponible à partir du {{ delivery_date|date("m/d/Y") }}</p>
+    <p>Votre commande sera disponible à partir du {{ delivery_date|format_datetime('full', 'none', locale='fr') }}</p>
     <hr>
     <div class="row">
-        <div class="col-md-6">
-            </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-12">
             <div class="text-center">
                 <b>Ma commande</b><br>
             </div>
@@ -23,17 +20,17 @@
             {% set total = null %}
                 {% for key,product in cart %}
                 <div class="row {% if key > 0 %}mt-2{% endif %}">
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px">
                     </div>
-                    <div class="col-7 my-auto">
+                    <div class="col-md-7 my-auto">
                         {{ product.product.name }} <br>
                         <small>
                             {{ product.product.subtitle }} <br>
                             x {{ product.quantity }}
                         </small>
                     </div>
-                    <div class="col-2 my-auto">
+                    <div class="col-md-2 my-auto">
                         {{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €
                     </div>
                 </div>

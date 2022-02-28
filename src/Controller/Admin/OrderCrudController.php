@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -15,7 +14,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
@@ -36,13 +34,14 @@ class OrderCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         $updatePreparation = Action::new('updatePreparation', 'Préparation en cours', 'fas fa-box-open')->linkToCrudAction('updatePreparation');
-        $updateDelivery = Action::new('updateDelivery', 'Livraison en cours', 'fas fa-truck')->linkToCrudAction('updateDelivery'); 
+        $updateDelivery = Action::new('updateDelivery', 'Prêt a être retiré', 'fas fa-truck')->linkToCrudAction('updateDelivery'); 
 
         return $actions
         ->add('detail', $updatePreparation)
         ->add('detail', $updateDelivery)
         ->add('index', 'detail');
-    }
+    } 
+    
     public function updatePreparation(AdminContext $context) {
         $order = $context->getEntity()->getInstance();
         $order->setState(2);

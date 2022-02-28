@@ -6,6 +6,12 @@
   --table-cell-color: white;
   --table-thead-color: white;
   --pagination-color: white;
+  --form-label-color: white;
+  --color-primary: #cf9d3d;
+  --table-hover-cell-bg: #cf9d3d;
+  --table-thead-sorted-color: white;
+  --datalist-label-color: white;
+  --datalist-value-color: white;
 }
 
 .content-top {
@@ -27,10 +33,17 @@ h6 {
   font-family: "Lobster", cursive;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:not(:disabled):not(.disabled):not(.btn-link):hover,
+.btn-primary:not(:disabled):not(.disabled):not(.btn-link):focus,
+.btn-primary:not(:disabled):not(.disabled):not(.btn-link):active,
+.btn-primary:not(:disabled):not(.disabled):not(.btn-link):active:focus {
   background-color: #cf9d3d;
 }
 
 .page-item.active .page-link {
+  background-color: #cf9d3d;
+}
+.fileupload-table tr:nth-child(odd) td {
   background-color: #cf9d3d;
 }

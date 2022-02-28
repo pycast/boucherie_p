@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -20,19 +21,24 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+        ->add('index', 'detail');
+    } 
 
     public function configureFields(string $pageName): iterable
     {
         return[
             TextField::new('name'),
-            SlugField::new('slug')->setTargetFieldName('name'),
-            TextField::new('subtitle'),
+            SlugField::new('slug')->setTargetFieldName('name')->hideOnIndex(),
+            TextField::new('subtitle')->hideOnIndex(),
             ImageField::new('illustration')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            TextareaField::new('description'),
+            TextareaField::new('description')->hideOnIndex(),
             MoneyField::new('price')->setCurrency('EUR'),
             AssociationField::new('category'),
             BooleanField::new('visible'),
