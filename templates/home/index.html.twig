@@ -10,29 +10,34 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    {% for header in headers %}
+    <div class="carousel-item active" style="background: url('uploads/{{ header.illustration }}');background-size:cover;background-position:center;">
                   <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
+                    <h1 class='text-custom'>{{ header.title }}</h1>
+                    <p><a class="btn btn-dark" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
                 </div>
             </div>
     </div>
-    <div class="carousel-item">
+    
+    <div class="carousel-item" style="background: url('uploads/{{ header.illustration2 }}');background-size:cover;background-position:center;">
                   <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
-                    
+                    <h1 class='text-custom'>{{ header.title2 }}</h1>
+                    <p><a class="btn btn-dark" href="{{ header.btnUrl2 }}" role="button">{{ header.btnTitle2 }}</a></p>
                 </div>
             </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" style="background: url('uploads/{{ header.illustration3 }}');background-size:cover;background-position:center;">
                   <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">(Remplacer par une image ici)</h1>
+                    <h1 class='text-custom'>{{ header.title3 }}</h1>
+                    <p><a class="btn btn-dark" href="{{ header.btnUrl3 }}" role="button">{{ header.btnTitle3 }}</a></p>
                 </div>
             </div>
     </div>
   </div>
+  {% endfor %}
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
