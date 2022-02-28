@@ -1,0 +1,81 @@
+ {% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+
+
+
+{% block main %}
+
+   <h1>{{ ea.dashboardTitle }}</h1>
+   <div class="container">
+        <div class="row">
+            <h3>1. Choisir la recette</h3>
+            <div class="col col-12">
+                {% if notificationRecipe != null %}
+                    <div class="alert alert-info" role="alert">
+                        {{notificationRecipe}}
+                    </div>
+                {% endif %}
+                {{form(formRecipe)}}  
+            </div>
+        <div class="row">
+            <h3>2. Vérifier les ingrédients</h3>
+                <div class="col col-12">
+                 {% if notificationIngredient != null %}
+                    <div class="alert alert-info" role="alert">
+                        {{notificationIngredient}}
+                    </div>
+                {% endif %}
+                   
+                        {{form(formIngredient)}}
+
+                </div>
+        </div>
+        <div class="row">
+            <h3>3. Lier Recette, ingrédients et quantités</h3>
+                <div class="col col-12">
+                 {% if notificationQuantity != null %}
+                    <div class="alert alert-info" role="alert">
+                        {{notificationQuantity}}
+                    </div>
+                {% endif %}
+                   
+                        {{form(formQuantity)}}
+                        
+
+                </div>
+        </div>
+       
+         <div class="row">
+            <h3>5. Test, afficher les quantités en fonction des recettes</h3>
+            {% for recipe  in idRecipe %}
+            <div class="col-sm-12 mb-2">
+                <div class="card bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">{{recipe.id}} : {{recipe.recette.name}}</h5>
+                    <p class="card-text"> 
+                        {% for quantity in repositoryQuantities %}
+                             {% if recipe.id == quantity.recipe.id %}
+                                 - {{quantity.quantity}} {{quantity.ingredient.measure}} {{quantity.ingredient}}   <br>
+                            {% endif %}
+                        {% endfor %}
+                    </p>   
+                </div>
+                </div>
+            </div>
+           {% endfor %}
+        </div>
+
+        <div class="row">
+            <h3>Obtenir les produits dans les commandes</h3>
+                <div class="col col-12">
+                
+
+                </div>
+        </div>
+   
+        
+
+
+
+{% endblock %}

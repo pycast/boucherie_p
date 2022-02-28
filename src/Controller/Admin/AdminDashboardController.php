@@ -64,6 +64,7 @@ class AdminDashboardController extends AbstractDashboardController
         
         yield MenuItem::linkToCrud('commandes', 'fas fa-box', Order ::class);
         yield MenuItem::linkToCrud('Histoire', 'fas fa-newspaper', Histoire ::class);
+        yield MenuItem::linkToRoute('TestController', 'fas fa-comments', 'test_crud_controller');
     }
 
     public function configureAssets(): Assets
