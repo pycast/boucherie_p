@@ -8,43 +8,7 @@
 
    <h1>{{ ea.dashboardTitle }}</h1>
    <div class="container">
-        <div class="row">
-            <h3>1. Choisir la recette</h3>
-            <div class="col col-12">
-                {% if notificationRecipe != null %}
-                    <div class="alert alert-info" role="alert">
-                        {{notificationRecipe}}
-                    </div>
-                {% endif %}
-                {{form(formRecipe)}}  
-            </div>
-        <div class="row">
-            <h3>2. Vérifier les ingrédients</h3>
-                <div class="col col-12">
-                 {% if notificationIngredient != null %}
-                    <div class="alert alert-info" role="alert">
-                        {{notificationIngredient}}
-                    </div>
-                {% endif %}
-                   
-                        {{form(formIngredient)}}
-
-                </div>
-        </div>
-        <div class="row">
-            <h3>3. Lier Recette, ingrédients et quantités</h3>
-                <div class="col col-12">
-                 {% if notificationQuantity != null %}
-                    <div class="alert alert-info" role="alert">
-                        {{notificationQuantity}}
-                    </div>
-                {% endif %}
-                   
-                        {{form(formQuantity)}}
-                        
-
-                </div>
-        </div>
+       
        
          <div class="row">
             <h3>5. Test, afficher les quantités en fonction des recettes</h3>
@@ -69,10 +33,36 @@
         <div class="row">
             <h3>Obtenir les produits dans les commandes</h3>
                 <div class="col col-12">
+                    {% for prdQut in arrayPrdQut %}
+                        <h5>{{prdQut.produit}} x {{prdQut.qté}} :</h5>
+                        <p>liste ingrédients: 
+                            {% for recipe  in idRecipe %}
+                                {% if recipe.recette.name == prdQut.produit  %}
+                                    (id recette = {{recipe.id}}) <br>
+                                    {% for quantity in repositoryQuantities %}
+                                        {% if recipe.id == quantity.recipe.id %}
+                                        -{{  (quantity.quantity)*(prdQut.qté)  }}  {{quantity.ingredient.measure}} {{quantity.ingredient}} (id = {{quantity.ingredient.id}})  <br>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}<br>
+                        </p> 
+                    {% endfor %}
+
+                    <pre>
+                        {{ dump(arrayPrdQut) }}
+                    </pre>
+                    <pre>
+                        {{ dump(arrayIdIngredient) }}
+                    </pre>
+                    
+                
+             
                 
 
                 </div>
         </div>
+        
    
         
 
