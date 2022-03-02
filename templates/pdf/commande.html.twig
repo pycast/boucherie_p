@@ -1,12 +1,32 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}>Ma commande n°{{ order.reference }} - La Boutique Française{% endblock %}
-
-{% block content %}
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Ma commande n°{{ order.reference }}</h2> 
-    <a href="{{ path('account_order_show_pdf', { 'reference' : order.reference }) }}"> <img src="{{asset('build/images/pdfi.png')}}" alt="pdfico" width="64px"> </a>
-</div>
+<style>
+table {
+    border: solid 1px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto
+}
+table thead th {
+    background-color: grey;
+    border: solid 1px;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+    text-align: center;
+}
+table tbody td {
+    border: solid 1px;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+    text-align: center;
+}
+</style>
+<h1>Facture - Boucherie Paux</h1>
+{{user.firstname}} {{user.lastname}}
+<br>
+{{user.email}}    
+<br>
+    <h2>Ma commande n°{{ order.reference }} :</h2>
     <hr>
     <strong>Statut de la commande :</strong>
         {% if order.state == 1 %}
@@ -20,7 +40,9 @@
     <strong>Référence de ma commande :</strong><small>{{ order.reference }}</small>
     <hr>
     <strong>Détails :</strong>
-    <table class="table mt-5 table-dark">
+    <br>
+    <br>
+    <table>
         <thead>
             <tr>
                 <th scope="col">Produit</th>
@@ -33,17 +55,13 @@
             {% for product in order.orderDetails %}
             <tr>
                 <td>{{ product.product }}</td>
-                <td>x{{ product.quantity }}</td>
+                <td>{{ product.quantity }}</td>
                 <td>{{ (product.price / 100)|number_format(2, ',', '.') }}€</td>
                 <td>{{ (product.total / 100)|number_format(2, ',', '.') }}€</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div class="text-right">
-        <strong>Total : </strong>{{ (order.getTotal /100)|number_format(2, ',', '.') }} €
+    <br>
+            <strong>Total : </strong>{{ (order.getTotal /100)|number_format(2, ',', '.') }} €
     </div>
-
-    <hr>
-    <a href="{{ path('account') }}">Retour à mon compte</a>
-{% endblock %}
