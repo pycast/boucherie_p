@@ -64,13 +64,6 @@
             <div>
               <img src="{{ asset('build/images/shopping-cart.png') }}" class="cart cart-img" alt="Mon-panier">
             </div>
-            <div class="cart cart-text">
-            {% set nb_product = null %}
-              {% for products in cart %}
-                {% set nb_product = nb_product + products.quantity %}
-              {% endfor %}
-              {{ nb_product }}
-            </div>
           </div>
         </a>
       </div>

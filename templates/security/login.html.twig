@@ -39,10 +39,14 @@
                 </label>
             </div>
         #}
-        <hr>
-        <button class="btn btn-block btn-warning" type="submit">
-            Se connecter
-        </button>
+        <div class="my-5">
+            <button class="btn btn-block btn-warning" type="submit">
+                Se connecter
+            </button>
+        </div>
+        <div >
+        <a href="{{ path('reset_password') }}">Mot de passe oublié</a>
+        </div>
     </div>
 </form>
 {% endblock %}

@@ -41,11 +41,18 @@
     <p>choisissez la date de retrait, avant de finaliser votre commande.</p>
     <hr>
     <div class="row">
-        <div class="col-10">
+        <div class="col-4 mx-auto">
             <div class="text-center">
-                <b>Choisissez votre date de livraison</b>
-                {{ form(form, {action:path('order_recap')}) }}
+                <div class="m-3">
+                    <b>Choisissez votre date de livraison</b>
+                </div>
             </div>
+            {{ form(form, {action:path('order_recap')}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
             <div class="text-center">
                 <b>Récapitulatif de ma commande</b><br>
                 <p>Retrouvez le récapitulatif de vos produits.</p>

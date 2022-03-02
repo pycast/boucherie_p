@@ -18,6 +18,7 @@ class DeliveryType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
+                    'placeholder' => 'Choisissez votre date de retrait',
                     'class' => Order::class,
                     'class' => "datepicker"
                 ]

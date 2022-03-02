@@ -12,6 +12,13 @@
     <hr>
     <div class="row">
 
+        <div class="col-md-12">
+            <div class="account-item btn-danger text-center">
+                <a href="{{ path('admin') }}">Administration</a><br>
+            </div>
+        </div>
+        <hr>
+
         <div class="col-md-4">
             <div class="account-item text-center">
                 <a href="{{ path('account_update', {'id' : app.user.id } ) }}">Modifier mes infos</a><br>
@@ -19,14 +26,14 @@
         </div> 
 
         <div class="col-md-4">
-            <div class="account-item btn-danger text-center">
-                <a href="{{ path('admin') }}">Administration</a><br>
+            <div class="account-item text-center">
+                <a href="{{ path('account_order') }}">Suivre mes commandes</a>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="account-item text-center">
-                <a href="{{ path('account_order') }}">Suivre mes commandes</a>
+                <a href="{{ path('account_password') }}">modifier mon mot de passe</a>
             </div>
         </div>
     </div>
