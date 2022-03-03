@@ -1,0 +1,45 @@
+ {% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+
+
+
+{% block main %}
+
+   <h1>{{ ea.dashboardTitle }}</h1>
+    
+   
+   <div class="container">
+       <div class="row">
+            <h3>Quantités totales</h3>
+                <pre>
+                    {{ dump(newList) }}
+                </pre>
+                {% for ingredient in newList %}
+                    {{ingredient.qtDef}} {{ingredient.name}} {{ingredient.measure}} <br>
+                {% endfor %}
+                {% for produit in listeProduitsRéférencés %}
+                    {% if not produit.ingdtsList and produit.qt != 0 %}
+
+                        {{produit.qt}} {{produit.name}} <br>
+                    {% endif %}
+                    
+                {% endfor %}
+        </div>
+       
+         <div class="row">
+         <h3>Quantité Ingrédients/recette</h3>
+           <pre>
+               {{ dump(listeProduitsRéférencés) }}
+           </pre>
+        </div>
+
+        
+    </div>
+        
+   
+        
+
+
+
+{% endblock %}

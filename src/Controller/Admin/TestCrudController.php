@@ -73,7 +73,7 @@ class TestCrudController extends AbstractController
             $listeProduitsRéférencés[]=[
                     'name'=>$product->getName(),
                     'idProduct'=>$product->getId(),
-                    'qt'=>null
+                    'qt'=>0
             ];
         }
       
@@ -94,7 +94,6 @@ class TestCrudController extends AbstractController
            $keyLPR++;
         
         }
-        
         //dd($listeProduitsRéférencés);// mtnt égale au nombre de produits référencés commandés.
 
         //6. Associer une id recette pour chaque produit référencé commandé
@@ -110,140 +109,73 @@ class TestCrudController extends AbstractController
             
              $keyLPR++;    
         } 
-        dd($listeProduitsRéférencés); 
         
-        
-
-        
-        
-
-
-
-
-
-
-
-
-         for ($i=0; $i< (count($arrayProduitsQuantities)); $i++){
-        $listeProduits[]=$arrayProduitsQuantities[$i]['produit'];
-       }
-      
-      $listeDef[]=$listeProduits[0];
-       for ($b=1; $b < (count($listeProduits)); $b++){
-         
-            foreach($listeDef as $produi){
+        //7.Associer liste d'ingrédient pour chaque produit/recette
+            //Pour chaque produit, get id recette, dans ingredientrepo, find ingredient by recipe(nb)
+            $keyLPR=0;
+            foreach($listeProduitsRéférencés as $produitRéférencé){
+                $idRecipe=$produitRéférencé['idAssociatedRecipe'];
+                $qtNeeded=$produitRéférencé['qt'];
                 
-                        if($produi == $listeProduits[$b]){
-                            $listeDef[]='dejà pris';
-                        }else{
-                            $listeDef[]=$listeProduits[$b];
-                        }
-                    }
-                }
-
-                
-            
-           dd($listeDef);  
-       
-      
-
-       $nlleListe=$listeDef->findByName('Dinde blanche');
-       dd($listeDef);
-
-
-       
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //----get recipe ID + Name of product-------
-         $repositoryRecipe= $this->entityManager->getRepository(Recipe::class)->findAll();
-         
-         foreach ($repositoryRecipe as $recipeQuantity){
-           
-         }
-
-         $idRecipe=[];//ensemble des ID recettes
-         $nameRecipe=[];//ensemble des noms de recettes (=nom du produit)
-         foreach ($repositoryRecipe as $recipe){
-                $products=$recipe->getProduct();
-                 $nameRecipe[]=$products->getName();
-                $idRecipe[]=[
-                    'id'=>$recipe->getId(),
-                    'recette'=>$recipe->getProduct(),
-                ];  
-                
-               
-            }
-         
-         //------get all quantity table-----------
-          $repositoryQuantities= $this->entityManager->getRepository(Quantity::class)->findAll();
-          
-        
-          //--------get Quantity of each product ordered---------
-          
-         
-             $arrayPrdQut=[];//tableau qui comprends un tableau par recette commandée
-
-          foreach($nameRecipe as $produitCommandé){
-                //dans le repositoryOrderDetails, je cherche un produit qui corresponde à un nom de recette.
-                //si je trouve c'est que le produit a été commandé au moins une fois ou plus.
-                $repositoryOrderDetails= $this->entityManager->getRepository(OrderDetails::class)->findByProduct($produitCommandé);
-                //si produit trouvé/commandé:
-                if ($repositoryOrderDetails){
+                $repoQuantity=$this->entityManager->getRepository(Quantity::class)->findByRecipe($idRecipe);
+                $IngdtsList=[];
+                $keyRQ=0;
+                foreach($repoQuantity as $qt){
+                    $ingredientId=($qt->getIngredient())->getId();
+                    $IngdtsList[$keyRQ]=[
+                        'idIngredient'=>$ingredientId,
+                        'qtIngredient'=>($qt->getQuantity())*($qtNeeded)
+                    ];
                     
-                    $qt=0;//regroupe ensemble des quantités d'un produit donné.
-                    //à chaque fois que le produit est trouvé, getQuantity +1
-                    foreach($repositoryOrderDetails as $detail){
-                        $qt+=$detail->getQuantity();  
-                    }
-                    //on regroupe le tout dans un tableau, un nom de produit, le nombre de fois où il a été commandé
-                    $arrayPrdQut[]=[
-                        'produit'=>$produitCommandé,
-                        'qté'=>$qt
-                    ];  
+                    $keyRQ++;    
                 }
                 
+                $produitRéférencé['ingdtsList']=$IngdtsList;
+               
+                $listeProduitsRéférencés[$keyLPR]['ingdtsList']=$produitRéférencé['ingdtsList'];
+                $keyLPR++; 
+            }
+          
 
-            //-----get ingredient repository---
-            $repositoryIngredient= $this->entityManager->getRepository(Ingredient::class)->findAll();
-                //créer un tableau avec les id des aliments existants
-                $arrayNameIngredient=[];
-                foreach ($repositoryIngredient as $ingredientName){
-                    $arrayNameIngredient[]=$ingredientName->getName();
+        //8.Dans la $listeProduitsRéférencés obtenue au dessus, récupérer toutes les qt pr un ingredient donné;
+           
+        $repoIngredient=$this->entityManager->getRepository(Ingredient::class)->findAll(); 
+        $newList=[];   
+        foreach($repoIngredient as $ingredient){
+                $newList[]=[
+                    'id'=>$ingredient->getId(),
+                    'name'=>$ingredient->getName(),
+                    'qtDef'=>0,
+                    'measure'=>$ingredient->getMeasure()
+
+                ];
+            }
+        
+            $keyNewList=0;
+        foreach($newList as $ingredient){
+            $ingredient['qtDef']=0;
+            $i=0;
+            foreach($listeProduitsRéférencés[$i]['ingdtsList'] as $listProduit){
+        
+                if($listProduit['idIngredient'] == $ingredient['id']){
+                    $ingredient['qtDef']+=$listProduit['qtIngredient'];
                 }
-                
-
-          }
-        
-        
-        return $this->render('admin/index.html.twig',[
-           
-           
-            'repositoryRecipe'=>$repositoryRecipe,
-            'repositoryQuantities'=>$repositoryQuantities,
-            'idRecipe'=>$idRecipe,//produit(objet) + id de la recette
-            'repositoryOrderDetails'=>$repositoryOrderDetails,
-            'nameRecipe'=>$nameRecipe,//le nom des recettes existantes( correspondent au même nom de produit)
-            'produitCommandé'=>$produitCommandé,//Dans les produits existants, nom des produits commandés (attention pas de tableau ici)
-            'arrayPrdQut'=>$arrayPrdQut,//Array: nom du produit, le nombre de fois où il a été commandé(sur total des commandes).
+               $i++; 
+            }
+            $newList[$keyNewList]['qtDef']+=$ingredient['qtDef'];
+            $keyNewList++;
             
-            'arrayNameIngredient'=>$arrayNameIngredient,
-            'arrayIdOrderValid'=>$arrayIdOrderValid
-            
-
+           
+        }
+        
+         //dd($listeProduitsRéférencés);Qt/recette
+         //:qt totales
+        
+       
+        
+        return $this->render('admin/index2.html.twig',[
+           'listeProduitsRéférencés'=>$listeProduitsRéférencés,
+            'newList'=>$newList
         ]);
 
     }
