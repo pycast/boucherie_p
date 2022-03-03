@@ -3,10 +3,7 @@
 {% block title %}>Ma commande n°{{ order.reference }} - La Boutique Française{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center">
     <h2>Ma commande n°{{ order.reference }}</h2> 
-    <a href="{{ path('account_order_show_pdf', { 'reference' : order.reference }) }}"> <img src="{{asset('build/images/pdfi.png')}}" alt="pdfico" width="64px"> </a>
-</div>
     <hr>
     <strong>Statut de la commande :</strong>
         {% if order.state == 1 %}
@@ -43,6 +40,7 @@
     <div class="text-right">
         <strong>Total : </strong>{{ (order.getTotal /100)|number_format(2, ',', '.') }} €
     </div>
+    <strong>Télécharger votre facture: </strong><a href="{{ path('account_order_show_pdf', { 'reference' : order.reference }) }}"> <img src="{{asset('build/images/pdfi.png')}}" alt="pdfico" width="64px"> </a>
 
     <hr>
     <a href="{{ path('account') }}">Retour à mon compte</a>

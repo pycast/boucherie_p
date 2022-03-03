@@ -11,6 +11,7 @@
             Vous n'avez pas encore passé de commande sur La Boucherie Paux.
         </p>
     {% else %}
+    <div class="table-responsive">
         <table class="table mt-5 table-dark">
             <thead>
                 <tr>
@@ -43,7 +44,7 @@
                 {% endfor %}
             </tbody>
         </table> 
-
+    </div>
     {% endif %}
     <hr>
     <a href="{{ path('account') }}">Retour à mon compte</a>
