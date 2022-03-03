@@ -1,0 +1,91 @@
+ {% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+
+
+
+{% block main %}
+
+   <h1>{{ ea.dashboardTitle }}</h1>
+    
+   <pre>
+       {{ dump(arrayNameIngredient) }}
+   </pre>
+   <div class="container">
+       
+       
+         <div class="row">
+            <h3>5. Test, afficher les quantités en fonction des recettes</h3>
+            {% for recipe  in idRecipe %}
+            <div class="col-sm-12 mb-2">
+                <div class="card bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">{{recipe.id}} : {{recipe.recette.name}}</h5>
+                    <p class="card-text"> 
+                        {% for quantity in repositoryQuantities %}
+                             {% if recipe.id == quantity.recipe.id %}
+                                 - {{quantity.quantity}} {{quantity.ingredient.measure}} {{quantity.ingredient}}   <br>
+                            {% endif %}
+                        {% endfor %}
+                    </p>   
+                </div>
+                </div>
+            </div>
+           {% endfor %}
+        </div>
+
+        <div class="row">
+            <h3>Obtenir les produits dans les commandes</h3>
+                <div class="col col-12">
+                
+              
+                    {% for prdQut in arrayPrdQut %}
+                        <h5>{{prdQut.produit}} x {{prdQut.qté}} :</h5>
+                        <p>liste ingrédients: 
+                        {% set listes = {} %}
+                            {% for recipe  in idRecipe %}
+
+                                {% if recipe.recette.name == prdQut.produit  %}
+                                    (id recette = {{recipe.id}}) <br>
+                                    {% for quantity in repositoryQuantities %}
+                                        {% if recipe.id == quantity.recipe.id %}
+                                        <!--si l'idRecette = recetteId dans table quantité, résultats de la liste d'ingrédients totale pour une recette -->
+                                        
+                                        -{{  (quantity.quantity)*(prdQut.qté)  }} 
+                                         {{quantity.ingredient.measure}}
+                                          {{quantity.ingredient}} 
+                                          (id = {{quantity.ingredient.id}})  <br>
+                                            {% set listes = listes|merge({(quantity.ingredient.name): (quantity.quantity)*(prdQut.qté)}) %}
+                                           
+                                          
+        
+                                        {% endif %}
+                                       
+                                    {% endfor %}
+                                     
+                                {% endif %}
+                            {% endfor %}<br>
+                        </p> 
+                        
+                        
+                     {% endfor %}
+                <pre>
+                   
+                </pre>
+                   
+
+                   
+                    
+                
+             
+                
+
+                </div>
+        </div>
+        
+   
+        
+
+
+
+{% endblock %}
