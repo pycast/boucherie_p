@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\Contact;
 use App\Entity\Histoire;
 use App\Entity\Ingredient;
 use App\Entity\Order;
@@ -61,6 +62,7 @@ class AdminDashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('1.Recettes', 'fas fa-book', Recipe ::class);
         yield MenuItem::linkToCrud('2.Ingrédients', 'fas fa-smile', Ingredient ::class);
         yield MenuItem::linkToCrud('3.Quantités', 'fas fa-weight', Quantity::class);
+        yield MenuItem::linkToCrud('Messages', 'fas fa-envelope', Contact::class);
         
         yield MenuItem::linkToCrud('commandes', 'fas fa-box', Order ::class);
         yield MenuItem::linkToCrud('Histoire', 'fas fa-newspaper', Histoire ::class);
