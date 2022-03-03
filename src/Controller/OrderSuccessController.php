@@ -31,6 +31,7 @@ class OrderSuccessController extends AbstractController
             $cart->remove();
             // Modifier le statut is paid de la commande en mettant 1
             $order->setState(1);
+            $order->setPayment(1);
             $this->entityManager->flush();
 
             // Envoyer un email à notre client pour lui confirmer sa commande 

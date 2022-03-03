@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -81,6 +82,7 @@ class OrderCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Passée le'),
             TextField::new('user.lastname', 'Utilisateur'),
             MoneyField::new('total', 'Total produit')->setCurrency('EUR'),
+            BooleanField::new('payment', 'paiement')->setFormTypeOption('disabled','disabled'),
             ChoiceField::new('state', 'état de la commande')->setChoices([
                 'Non Payée' => 0,
                 'Payée' => 1,
