@@ -51,6 +51,57 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+     public function findWithSearchCaterer(Search $search)
+    {
+        $query=$this
+            ->createQueryBuilder('p')
+            ->select('c','p')
+            ->join('p.category','c')
+            ->andWhere('c.type = FALSE');
+
+        if(!empty($search->categories)){
+            $query=$query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories',$search->categories);
+        
+            }
+
+        if (!empty($search->string)){
+            $query=$query
+                ->andWhere('p.name LIKE :string')
+                ->setParameter('string',"%{$search->string}%");
+        }
+
+        
+
+        return $query->getQuery()->getResult();
+    }
+
+     public function findWithSearchButchery(Search $search)
+    {
+        $query=$this
+            ->createQueryBuilder('p')
+            ->select('c','p')
+            ->join('p.category','c')
+            ->andWhere('c.type = TRUE');
+
+        if(!empty($search->categories)){
+            $query=$query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories',$search->categories);
+        
+            }
+
+        if (!empty($search->string)){
+            $query=$query
+                ->andWhere('p.name LIKE :string')
+                ->setParameter('string',"%{$search->string}%");
+        }
+
+        
+
+        return $query->getQuery()->getResult();
+    }
     
     // /**
     //  * @return Product[] Returns an array of Product objects

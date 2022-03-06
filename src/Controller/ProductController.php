@@ -74,7 +74,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $products=$this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            $products=$this->entityManager->getRepository(Product::class)->findWithSearchButchery($search);
             
             
         }
@@ -114,7 +114,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $products=$this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            $products=$this->entityManager->getRepository(Product::class)->findWithSearchCaterer($search);
             
             
         }

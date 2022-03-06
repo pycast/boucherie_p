@@ -47,6 +47,9 @@ class Product
     #[ORM\OneToOne(mappedBy: 'product', targetEntity: Recipe::class, cascade: ['persist', 'remove'])]
     private $recipe_associated;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $unit;
+
     public function __toString()
     {
         return $this->getName();
@@ -189,6 +192,18 @@ class Product
         }
 
         $this->recipe_associated = $recipe_associated;
+
+        return $this;
+    }
+
+    public function getUnit(): ?string
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(string $unit): self
+    {
+        $this->unit = $unit;
 
         return $this;
     }

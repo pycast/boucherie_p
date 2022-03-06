@@ -6,37 +6,72 @@
 
 {% block main %}
 
-   <h1>{{ ea.dashboardTitle }}</h1>
-    
-   
-   <div class="container">
-       <div class="row">
-            <h3>Quantités totales</h3>
-                <pre>
-                    {{ dump(newList) }}
-                </pre>
+   <p class="mb-5">{{ ea.dashboardTitle }}</p>
+
+<div class="container">
+   <h3 class="text-center">Liste d'ingrédients provisionnelle</h3>
+    <div class="col-8 mx-auto mt-4 mb-5 bg-dark p-2 border border-warning rounded">
+        <table class="table text-light text-center ">
+            <thead class="text-warning">
+                <tr >
+                    <th scope="col">🧃 Ingrédient 🧃</th>
+                    <th scope="col">⚖️ Quantité ⚖️</th>
+                </tr>
+            </thead>
+            <tbody>
                 {% for ingredient in newList %}
-                    {{ingredient.qtDef}} {{ingredient.name}} {{ingredient.measure}} <br>
+                    {% if ingredient.qtDef > 0 %}
+                        <tr>
+                            <td class="fw-bold">{{ingredient.name}}</td>
+                            <td> x {{ingredient.qtDef}} {{ingredient.measure}}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
                 {% for produit in listeProduitsRéférencés %}
                     {% if not produit.ingdtsList and produit.qt != 0 %}
-
-                        {{produit.qt}} {{produit.name}} <br>
+                        <tr>
+                            <td class="fw-bold">{{produit.name}}</td>
+                            <td> x {{produit.qt}}</td>
+                        </tr>
                     {% endif %}
                     
                 {% endfor %}
-        </div>
-       
+
+            </tbody>
+        </table>
+    </div>
+   
+   
+      
          <div class="row">
          <h3>Quantité Ingrédients/recette</h3>
            <pre>
                {{ dump(listeProduitsRéférencés) }}
            </pre>
         </div>
-
-        
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        {% for produitRéférencé in listeProduitsRéférencés %}
+            {% if not produitRéférencé.ingdtsList %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-heading{{produitRéférencé.idProduct}}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{produitRéférencé.idProduct}}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{produitRéférencé.idProduct}}">
+                        {{produitRéférencé.name}}
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapse{{produitRéférencé.idProduct}}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading{{produitRéférencé.idProduct}}">
+                    <div class="accordion-body">
+                        -{{produitRéférencé.name}} <br>
+                        [Pas d'ingrédient renseigné pour cette recette]
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
         
+</div>
+     
+    
    
         
 

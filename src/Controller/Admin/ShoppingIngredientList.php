@@ -9,14 +9,13 @@ use App\Entity\Product;
 use App\Entity\Quantity;
 use App\Entity\Recipe;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Stmt\Foreach_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class TestCrudController extends AbstractController
+class ShoppingIngredientList extends AbstractController
 
 {
 
@@ -26,7 +25,7 @@ class TestCrudController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-     #[Route('/testCrudController', name: 'test_crud_controller')]
+     #[Route('/ListeIngrédientsPrévisonnelle', name: 'shopping_ingredient_list')]
     public function index():Response
     {  
 
