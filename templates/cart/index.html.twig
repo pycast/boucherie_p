@@ -3,69 +3,57 @@
 {% block title %}Mon Panier - La Boutique Française{% endblock %}
 
 {% block content %}
-    <div style="background: linear-gradient(to top, #000 5%, #cf9d3d 50%, #000 95%);">
-        <h1 class="title-custom">Mon panier</h1>
-        Retrouver l'ensemble des produits que vous avez ajouté à votre panier.
-
-        {% if cart|length > 0 %}
-            <table class="table">
-            <tbody class="d-grid gap-3">
-            {% set total = null %}
-            {% for product in cart %}
-                <tr class="p-2  row">
-                    <td class="col-6">
-                        <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px"><br>
-                        {{ product.product.name }} <br>
-                        <small>{{ product.product.subtitle }}</small>
-                    </td>
-                    <td class="col-6">
-                        <div class="row">
-                            <div class="col-3">
-                                <a href="{{ path('decrease_to_cart', {'id' : product.product.id }) }}">
-                                    <img src="{{ asset('build/images/minus.png') }}"class="custom-button" height="20px" alt="Retirer du panier">
-                                </a>
-                            </div>
-                            <div class="col-3">
-                                x {{ product.quantity }}
-                            </div>
-                            <div class="col-3">
-                                <a href="{{ path('add_to_cart', {'id' : product.product.id }) }}">
-                                    <img src="{{ asset('build/images/plus.png') }}" class="custom-button" height="20px" alt="Ajouter au panier">
-                                </a> <br>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Prix unitaire :</strong> <br>
-                                {{ (product.product.price / 100) |number_format(2, ',', '.') }} €
-                            </div>
-                            <div class="col-6">
-                                <strong>Total :</strong> <br>
-                                {{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €<br>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
-                            </div>
-                            <div class="col-4">
-                                <a href="{{ path('delete_to_cart', {'id' : product.product.id }) }}">
-                                    <img src="{{ asset('build/images/trash.png') }}" class="mx-auto custom-button" alt="Suprimer mon panier">
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% set total = total + (product.product.price * product.quantity) %}
-                {% endfor %}
-            </tbody>
-            </table>
-            <div class="text-right m-5">
-                <b>Total de mon panier :</b> {{ (total / 100) |number_format(2, ',', '.') }} € <br>
-                <a href="{{ path('order') }}" class="btn btn-success btn-block">Passer commande</a>
+<div style="background: linear-gradient(to top, #000 5%, #cf9d3d 50%, #000 95%);">
+    <h1 class="title-custom">Mon panier</h1>
+    Retrouver l'ensemble des produits que vous avez ajouté à votre panier.
+    <br>
+    {% if cart|length > 0 %}
+    {% set total = null %}
+    {% for product in cart %}
+    <br>
+    <div class="cart-item">
+        <div class="row">
+            <div class="col-lg-2 my-auto mx-auto">
+            <img class="img-flex" src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="100px"><br>
             </div>
-        {% else %}
-        <hr>
-        Votre panier est vide.
-        {% endif %}
+            <div class="col-lg-2  my-auto mx-auto">
+            <h5 class="card-title text-dark">{{ product.product.name }}</h5>
+            <small class="text-dark">{{ product.product.subtitle }}</small>                            
+            </div>
+            <div class="col-lg-2 my-auto mx-auto">
+            <a href="{{ path('decrease_to_cart', {'id' : product.product.id }) }}">
+            <img src="{{ asset('build/images/minus.png') }}"class="custom-button" height="20px" alt="Retirer du panier">
+            </a>
+            <small class="text-dark">x {{ product.quantity }} </small>
+            <a href="{{ path('add_to_cart', {'id' : product.product.id }) }}">
+            <img src="{{ asset('build/images/plus.png') }}" class="custom-button" height="20px" alt="Ajouter au panier">
+            </a>
+            </div>
+            <div class="col-lg-2 my-auto mx-auto">
+            <strong class="text-dark">Prix unitaire :</strong>
+            <p class="text-dark">{{ (product.product.price / 100) |number_format(2, ',', '.') }} €</p>
+            </div>
+            <div class="col-lg-2 my-auto mx-auto">
+            <strong class="text-dark">Total :</strong>
+            <p class="text-dark">{{ (product.product.price * product.quantity / 100) |number_format(2, ',', '.') }} €</p>
+            </div>
+            <div class="col-lg-2 my-auto mx-auto">
+            <a href="{{ path('delete_to_cart', {'id' : product.product.id }) }}">
+            <img src="{{ asset('build/images/trash.png') }}"class="custom-button" height="20px" alt="Supprimer du panier">
+            </a>
+            </div>
+        </div>
+    </div>
+        {% set total = total + (product.product.price * product.quantity) %}
+
+    {% endfor %}
+    <div class="text-right m-5">
+    <b>Total de mon panier :</b> {{ (total / 100) |number_format(2, ',', '.') }} € <br>
+    <a href="{{ path('order') }}" class="btn btn-success btn-block">Passer commande</a>
+    </div>
+    {% else %}
+    <hr>
+    Votre panier est vide.
+    {% endif %}
     </div>
 {% endblock %}

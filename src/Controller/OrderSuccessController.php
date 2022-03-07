@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\Cart;
+use App\Classes\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,8 @@ class OrderSuccessController extends AbstractController
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneByStripesessionid($stripeSessionId);
 
+        $mail = new Mail();
+
         if (!$order  || $order->getUser() != $this->getUser()) {
             return $this->redirectToRoute('home');
         }
@@ -35,9 +38,11 @@ class OrderSuccessController extends AbstractController
             $this->entityManager->persist($order);
             $this->entityManager->flush();
 
+            $content = "Votre paiement a été accepté. Vous pouvez maintenant suivre votre commande dans votre espace client sur le site de votre artisan.";
             // Envoyer un email à notre client pour lui confirmer sa commande 
+            $mail->send($order->getUser()->getEmail(), 'Client', 'Paiement accepté, commande validée', $content);
+
         }
-        
         return $this->render('order_success/index.html.twig', [
             'order' => $order
         ]);

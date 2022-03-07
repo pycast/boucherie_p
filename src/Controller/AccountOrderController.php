@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Pdf;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,5 +41,20 @@ class AccountOrderController extends AbstractController
         return $this->render('account/order_show.html.twig', [
             'order' => $order
         ]);
+    }
+
+    #[Route('/compte/mes-commandes/{reference}/pdf', name: 'account_order_show_pdf')]
+    public function generateBillPdf($reference, Pdf $pdf): void
+    {
+        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
+
+        $user = $this->getUser();
+
+        $html = $this->render("pdf/commande.html.twig", [
+            "order"=>$order,
+            "user"=>$user
+        ]);
+
+        $pdf->showPdfFile($html, "facture");
     }
 }
