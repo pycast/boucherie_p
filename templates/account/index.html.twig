@@ -13,29 +13,36 @@
     <div class="row">
         {% if is_granted('ROLE_ADMIN') %}
             <div class="col-md-12">
-                <div class="account-item btn-danger text-center">
-                    <a href="{{ path('admin') }}">Administration</a><br>
-                </div>
+                <a href="{{ path('admin') }}">
+                    <div class="account-item btn-danger text-center">
+                        Administration
+                    </div>
+                </a>
             </div>
         {% endif %}
-        <hr>
 
-        <div class="col-md-4">
-            <div class="account-item text-center">
-                <a href="{{ path('account_update', {'id' : app.user.id } ) }}">Modifier mes infos</a><br>
-            </div>
+        <div class="col-md-4 my-2">
+            <a href="{{ path('account_update', {'id' : app.user.id } ) }}">
+                <div class="account-item btn-warning text-center">
+                    Modifier mes infos
+                </div>
+            </a>
         </div> 
 
-        <div class="col-md-4">
-            <div class="account-item text-center">
-                <a href="{{ path('account_order') }}">Suivre mes commandes</a>
-            </div>
+        <div class="col-md-4 my-2">
+            <a href="{{ path('account_order') }}">
+                <div class="account-item btn-warning text-center">
+                    Suivre mes commandes
+                </div>
+            </a>
         </div>
 
-        <div class="col-md-4">
-            <div class="account-item text-center">
-                <a href="{{ path('account_password') }}">modifier mon mot de passe</a>
-            </div>
+        <div class="col-md-4 my-2">
+            <a href="{{ path('account_password') }}">
+                <div class="account-item btn-warning text-center">
+                    modifier mon mot de passe
+                </div>
+            </a>
         </div>
     </div>
     <hr>

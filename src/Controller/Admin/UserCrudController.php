@@ -41,7 +41,7 @@ class UserCrudController extends AbstractCrudController
 
     public function updateRoles(AdminContext $context) {
         $user = $context->getEntity(User::class)->getInstance();
-        $user->setRoles(['Role_admin']);
+        $user->setRoles(['ROLE_ADMIN']);
         $this->entityManager->flush();
 
         $this->addFlash('notice', "<span class='alert alert-warning'><stong>L'utilisateur' " . $user->getlastname() . " est devenu <u>Admin</u>.</stong></span>");

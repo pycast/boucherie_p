@@ -50,6 +50,7 @@ class ProductCrudController extends AbstractCrudController
             ]
             ),
             AssociationField::new('category'),
+            TextField::new('unit', 'unité'),
             BooleanField::new('visible'),
             BooleanField::new('order_online_open')
 
