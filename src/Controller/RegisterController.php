@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,6 +27,8 @@ class RegisterController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
+        $mail = new Mail();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -43,7 +46,10 @@ class RegisterController extends AbstractController
 
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
-                $notification = "Votre inscription s'est correctement déroulé. Vous pouvez dès à présent vous connecter à votre compte";
+                $notification = "Votre inscription s'est correctement déroulé. Vous pouvez dès à présent vous connecter à votre compte, vous venez de recevoir un e-mail sur votre boîte mail que vous venez de renseigner.";
+
+                $mail->send($user->getEmail(), $user->getFirstname(), "Inscription réussie sur le site de votre artisan", "Bienvenue sur le site de votre artisan Benoît Paux. Votre inscription a été enregistrée vous pouvez maintenant faire vos achats et suivre vos commandes.");
+
             } else {
                 $notification = "L'email que vous avez renseigné existe déjà.";
             }
