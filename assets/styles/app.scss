@@ -14,6 +14,8 @@ body {
   background-color: $bg_color;
   color: white;
   padding-bottom: 200px;
+  position: relative;
+  min-height: 100vh;
 }
 
 .backgroundForm {
@@ -89,7 +91,7 @@ a:hover {
   padding: 10px;
 }
 
-.custom-cart{
+.custom-cart {
   background-color: #000000;
   border: solid #ffffff 2px;
   border-radius: 25px;
@@ -98,14 +100,14 @@ a:hover {
   position: relative;
   padding: 8px 16px;
 }
-.cart{
+.cart {
   position: absolute;
   height: 40px;
   width: 40px;
-  &-img{
+  &-img {
     z-index: 1;
   }
-  &-text{
+  &-text {
     z-index: 2;
     font-size: x-large;
     color: tomato;
@@ -114,13 +116,13 @@ a:hover {
   }
 }
 
-.cart-item{
+.cart-item {
   background-color: #ffffffc0;
-  width: 80%; 
-  position: relative; 
-  margin-right: auto; 
-  margin-left: auto; 
-  border-radius: 10px; 
+  width: 80%;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
   text-align: center;
 }
 .carousel-custom-img {
