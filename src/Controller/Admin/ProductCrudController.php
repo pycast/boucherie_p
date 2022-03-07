@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -40,6 +41,14 @@ class ProductCrudController extends AbstractCrudController
                 ->setRequired(false),
             TextareaField::new('description')->hideOnIndex(),
             MoneyField::new('price')->setCurrency('EUR'),
+            ChoiceField::new('unit')->setChoices([
+                '100g' => '100g',
+                'pièce' => 'pièce',
+                'kilo' => 'kilo',
+                'dizaine' => 'dizaine',
+                'douzaine' => 'douzaine',
+            ]
+            ),
             AssociationField::new('category'),
             BooleanField::new('visible'),
             BooleanField::new('order_online_open')

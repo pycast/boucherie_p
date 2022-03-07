@@ -77,27 +77,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active" href="{{path('products')}}">
               Nos produits
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{{path('products')}}">Tous nos produits</a></li>
-              <li><a class="dropdown-item" href="{{path('products_butchery')}}">Boucherie</a></li>
-              <li><a class="dropdown-item" href="{{path('products_caterer')}}">Traiteur</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{{path('histoire')}}">Notre histoire</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{{path('contact')}}">Nous contacter</a>
-          </li>
           {% if app.user %}
             <li class="nav-item">
               <a class="nav-link active" href="{{path('account')}}"> Mon Profil <small>( {{ app.user.firstname }} )</small></a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{{path('app_logout')}}"> Deconnexion </a>
+              <a class="nav-link active" href="{{path('app_logout')}}"> Déconnexion </a>
             </li>
           {% else %}
             <li class="nav-item">
@@ -130,6 +118,6 @@
   <!-- Footer-->
   <footer class="footer-custom">
     <p>Team Gradient &copy; <br>
-      Boucherie Paux 2022</p>
+      Boucherie Paux 2022 - <a href="{{path('legal_mentions')}}">Mentions Légales </a> - <a href="{{path('general_sales_conditions')}}">CGV</a></p>
   </footer>
 {% endblock %}
