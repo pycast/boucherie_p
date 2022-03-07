@@ -11,16 +11,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Filter\ArrayFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\DateTimeFilter;
-use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
-use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 class OrderCrudController extends AbstractCrudController
@@ -103,6 +101,7 @@ class OrderCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Passée le')->hideOnIndex(),
             TextField::new('user.lastname', 'Utilisateur'),
             MoneyField::new('total', 'Total produit')->setCurrency('EUR'),
+            BooleanField::new('payment', 'commande payé')->setFormTypeOption('disabled', 'disabled')->hideonindex(),
             ChoiceField::new('state', 'état de la commande')->setChoices([
                 'Non Payée' => 0,
                 'Payée' => 1,
