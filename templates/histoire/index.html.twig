@@ -1,18 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}>Notre histoire - Boucherie Paux{% endblock %}
 
 {% block content %}
-
-
-  
 </br>
-
-
-        
             <h1 class="title-custom text-center">Notre Histoire</h1>
             </br>
-          
-       
+
         <div class='row histoire-container'>
                 {% for histoire in histoires %}
                     <div class="col-md-12">
@@ -30,8 +24,5 @@
                 {% endfor %}
             </div>
         </div>
-        
-
-
 
 {% endblock %}

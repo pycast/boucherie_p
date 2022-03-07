@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Confirmation de ma commande - Boucherie{% endblock %}
+{% block title %}Confirmation de ma commande - Boucherie Paux{% endblock %}
 
 {% block content %}
     <h2>Confirmation de ma commande</h2>
@@ -9,6 +9,6 @@
         Nous vous remercions pour votre commande n <strong>{{ order.reference }}</strong>. <br>
         Une confirmation vient de vous être envoyée par email à l'adresse <strong>{{ order.user.email }}</strong>.
         <hr>
-        Pour suivre votre commande rendez-vous dans votre <a href="{{ path('account_order') }}">compte</a>.
+        Pour suivre votre commande rendez-vous dans votre <a href="{{ path('account_order') }}"><b>compte</b></a>.
     </p>
 {% endblock %}
