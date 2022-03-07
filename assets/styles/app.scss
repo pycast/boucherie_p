@@ -14,7 +14,6 @@ body {
   padding-bottom: 200px;
 }
 
-
 .backgroundForm {
   padding: 50px;
 }
@@ -64,11 +63,11 @@ a:hover {
   transition: ease-in-out 125ms;
 }
 
-.custom-radient{
+.custom-radient {
   background: linear-gradient(to top, #333 5%, #cf9d3d 50%, #333 95%);
 }
 
-.table-custom{
+.table-custom {
   background-color: #f8f9fa80;
   margin: 2px;
   border-radius: 15px;
@@ -79,12 +78,17 @@ a:hover {
   width: 80%;
 }
 
-.custom-button{
+.custom-button {
   background-color: white;
   border: solid black 2px;
   border-radius: 5px;
   height: 3rem;
   width: 3rem;
   padding: 10px;
+}
 
+.carousel-custom-img {
+  max-width: 50%;
+  background-position: center;
+  background-size: cover;
 }

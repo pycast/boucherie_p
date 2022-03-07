@@ -43,31 +43,7 @@
    
    
       
-         <div class="row">
-         <h3>Quantité Ingrédients/recette</h3>
-           <pre>
-               {{ dump(listeProduitsRéférencés) }}
-           </pre>
-        </div>
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        {% for produitRéférencé in listeProduitsRéférencés %}
-            {% if not produitRéférencé.ingdtsList %}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-heading{{produitRéférencé.idProduct}}">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{produitRéférencé.idProduct}}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{produitRéférencé.idProduct}}">
-                        {{produitRéférencé.name}}
-                    </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapse{{produitRéférencé.idProduct}}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading{{produitRéférencé.idProduct}}">
-                    <div class="accordion-body">
-                        -{{produitRéférencé.name}} <br>
-                        [Pas d'ingrédient renseigné pour cette recette]
-                    </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+         
         
 </div>
      

@@ -21,13 +21,7 @@ class IngredientCrudController extends AbstractCrudController
             ChoiceField::new('measure')
             ->setChoices([
                 'g' => 'g',
-                'k' => 'k',
-                'L' => 'L',
-                'mL' => 'mL',
-                'cL' => 'cL',
-                'c.à.s' => 'c.à.s',
-                'c.à.c' => 'c.à.c',
-                'pincée' => 'pincée(s)',
+                'K' => 'K',
             ]
             )
 
